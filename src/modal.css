@@ -1,0 +1,51 @@
+/* modalStyles.css */
+
+/* Style the overlay (the background behind the modal) */
+.ReactModal__Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black background */
+  }
+  
+  /* Style the modal content (the actual modal) */
+  .ReactModal__Content {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the modal */
+    background-color: #fff; /* White background */
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Drop shadow */
+    max-width: 400px;
+  }
+  
+  /* Style the modal title */
+  .modal-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  /* Style form elements within the modal */
+  .modal-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+  }
+  
+  .modal-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .modal-form button:hover {
+    background-color: #0056b3;
+  }
+  
