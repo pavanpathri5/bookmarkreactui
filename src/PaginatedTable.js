@@ -79,9 +79,9 @@ class PaginatedTable extends Component {
               <tr key={index}>
                 <td>{item.name}</td>
                 <td>{item.description}</td>
-                <td><a href={item.link} >{item.link}</a></td>
+                <td>{item.link}</td>
                 <td>{item.user.email}</td>
-                <td>{item.tag.name}</td>
+                <td><a target='_blank' href={`http://localhost:8050/api/v1/${item.name}`}>{item.tag.name}</a></td>
                 {/* Add more table cells based on your data structure */}
               </tr>
             ))}
