@@ -91,7 +91,7 @@ class CreateForm extends Component {
             </div>
 
             <div>
-              <label htmlFor="email">Link/Server:</label>
+              <label htmlFor="link">Link/Server:</label>
               <input
                 type="text"
                 id="link"
@@ -102,7 +102,7 @@ class CreateForm extends Component {
             </div>
 
             <div>
-              <label htmlFor="email">User Name:</label>
+              <label htmlFor="userName">User Name:</label>
               <input
                 type="text"
                 id="user"
@@ -113,14 +113,16 @@ class CreateForm extends Component {
             </div>
             
             <div>
-              <label htmlFor="email">Type :</label>
-              <input
-                type="text"
-                id="tag"
+              <label htmlFor="type">Type :</label>
+            <select
+               id="tag"
                 name="tag"
                 value={formData.tag}
                 onChange={this.handleInputChange}
-              />
+              >
+              <option value="link">link</option>
+              <option value="server">server</option>
+            </select>
             </div>
             <button type="submit">Submit</button>
           </form>
