@@ -3,15 +3,17 @@ import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import 'bootstrap/dist/css/bootstrap.css';
 import './table.css'; // Import the CSS file
-import CreateForm from './CreateForm';
+import SearchBar from './SearchBar'
 
 
 class PaginatedTable extends Component {
   state = {
     data: [],          // Store fetched data
     currentPage: 0,    // Current page number
-    itemsPerPage: 5, // Number of items to display per page
-    pageCount: 0
+    itemsPerPage: 10, // Number of items to display per page
+    pageCount: 0,
+    filteredData: [], // Store the data to display after filtering
+    searchQuery: ''
   };
 
   componentDidMount() {
@@ -19,15 +21,14 @@ class PaginatedTable extends Component {
   }
 
   fetchData = () => {
-    const { currentPage, itemsPerPage } = this.state;
+    const { currentPage, itemsPerPage, searchQuery } = this.state;
 
-    // Replace 'your_api_endpoint' with your actual API endpoint
-    axios.get(`http://localhost:8050/api/v1/getallbookmarks?page=${currentPage}&pageSize=${itemsPerPage}`)
+    axios.get(`http://localhost:8050/api/v1/searchbookmarks?page=${currentPage}&pageSize=${itemsPerPage}&searchterm=${searchQuery}`)
       .then((response) => {
-        console.warn(JSON.parse(response.data.length));
         this.setState({
-          data: response.data,
-          pageCount: Math.ceil(13/itemsPerPage)//Math.ceil(JSON.parse(response.data.length) / itemsPerPage), //  need data count
+          data: response.data.content,
+          pageCount: JSON.parse(response.data.totalPages),
+          filteredData : response.data.content
         });
       })
       .catch((error) => {
@@ -36,12 +37,24 @@ class PaginatedTable extends Component {
   };
 
   handlePageClick = (selectedPage) => {
-    console.log(`selectedPage--- ${JSON.stringify(selectedPage.selected - 1 )}`)
     this.setState(
       { currentPage: selectedPage.selected},
       () => this.fetchData()
     );
   };
+
+  handleSearch = (searchText) => {
+
+    this.setState({searchQuery : searchText});
+    const filteredResults = this.state.data.filter((item) =>
+      item.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+    this.setState(
+      { data: filteredResults },
+      () => this.fetchData()
+      );
+  }
 
   render() {
     // Pagination logic (skip in this example)
@@ -49,12 +62,11 @@ class PaginatedTable extends Component {
 
     return (
       <>
-      <CreateForm/>
       <div className="table-container">
+      <SearchBar onSearch={this.handleSearch} />
         <table>
           <thead>
             <tr>
-            <th>S.no</th>
             <th>Name</th>
             <th>Description</th>
             <th>Link / Details</th>
@@ -65,7 +77,6 @@ class PaginatedTable extends Component {
           <tbody>
           {data?.map((item, index) => (
               <tr key={index}>
-                <td>{index}</td>
                 <td>{item.name}</td>
                 <td>{item.description}</td>
                 <td><a href={item.link} >{item.link}</a></td>

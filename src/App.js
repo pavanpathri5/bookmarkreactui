@@ -4,8 +4,8 @@ import PaginatedTable from "./PaginatedTable";
 
 function App() {
   return (
-    <div className="App">
-      <h4>BookMarks</h4>
+    <div className="App main-page">
+      <div className='page-title'><h2>BookMarks</h2></div>
       <PaginatedTable />
     </div>
   );
