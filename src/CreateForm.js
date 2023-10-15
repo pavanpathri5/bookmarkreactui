@@ -70,7 +70,7 @@ class CreateForm extends Component {
           <h2 className="modal-title">Form Popup</h2>
           <form className="modal-form" onSubmit={this.handleSubmit}>
             <div>
-              <label htmlFor="firstName">Name</label>
+              <label htmlFor="firstName">BookMark Name</label>
               <input
                 type="text"
                 id="name"
@@ -91,7 +91,7 @@ class CreateForm extends Component {
             </div>
 
             <div>
-              <label htmlFor="email">Link:</label>
+              <label htmlFor="email">Link/Server:</label>
               <input
                 type="text"
                 id="link"
@@ -102,9 +102,9 @@ class CreateForm extends Component {
             </div>
 
             <div>
-              <label htmlFor="email">Email:</label>
+              <label htmlFor="email">User Name:</label>
               <input
-                type="email"
+                type="text"
                 id="user"
                 name="user"
                 value={formData.user}
@@ -113,7 +113,7 @@ class CreateForm extends Component {
             </div>
             
             <div>
-              <label htmlFor="email">TagName:</label>
+              <label htmlFor="email">Type :</label>
               <input
                 type="text"
                 id="tag"

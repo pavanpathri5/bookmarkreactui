@@ -67,11 +67,11 @@ class PaginatedTable extends Component {
         <table>
           <thead>
             <tr>
-            <th>Name</th>
+            <th>Bookmark Name</th>
             <th>Description</th>
-            <th>Link / Details</th>
-            <th>User</th>
-            <th>tagName</th>
+            <th>Link / Server</th>
+            <th>User Name</th>
+            <th>Type</th>
             </tr>
           </thead>
           <tbody>
