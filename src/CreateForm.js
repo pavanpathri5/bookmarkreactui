@@ -14,8 +14,8 @@ class CreateForm extends Component {
         name: '',
         description: '',
         link:'',
-        email: '',
-        tagName:''
+        user: '',
+        tag:''
       },
     };
   }
@@ -41,23 +41,8 @@ class CreateForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     // Handle form submission logic here, e.g., send data to an API
-    console.log(this.state.formData.name  );
-
-    const formData1 = {
-      // Extract form data from the component's state or input fields
-      name: this.state.formData.name,
-      description: this.state.formData.description,
-      link : this.state.formData.link,
-      user : { 
-        email : this.state.formData.email
-      },
-      tag : {
-        name : this.state.formData.tagName
-      }
-    };
-
-
-    axios.post('http://localhost:8050/api/v1/createbookmark', formData1)
+    console.log(this.state.formData);
+    axios.post('http://localhost:8050/api/v1/createbookmark', this.state.formData)
       .then((response) => {
         // Handle a successful response from the API
         console.log('Data sent to the API:', response.data);
@@ -74,7 +59,7 @@ class CreateForm extends Component {
 
     return (
       <div>
-        <button onClick={this.openModal}>Open Form</button>
+        <button onClick={this.openModal}>Create</button>
         <Modal
           isOpen={this.state.isModalOpen}
           onRequestClose={this.closeModal}
@@ -120,9 +105,9 @@ class CreateForm extends Component {
               <label htmlFor="email">Email:</label>
               <input
                 type="email"
-                id="email"
-                name="email"
-                value={formData.email}
+                id="user"
+                name="user"
+                value={formData.user}
                 onChange={this.handleInputChange}
               />
             </div>
@@ -131,9 +116,9 @@ class CreateForm extends Component {
               <label htmlFor="email">TagName:</label>
               <input
                 type="text"
-                id="tagName"
-                name="tagName"
-                value={formData.tagName}
+                id="tag"
+                name="tag"
+                value={formData.tag}
                 onChange={this.handleInputChange}
               />
             </div>

@@ -63,3 +63,8 @@ tfoot th {
   font-weight: normal;
 }
 
+.page-title {
+  text-align: left;
+  padding: 10px;
+
+}
